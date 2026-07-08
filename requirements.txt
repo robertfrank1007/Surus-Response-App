@@ -1,0 +1,6 @@
+flask
+pandas
+lightgbm
+mlflow[databricks]
+databricks-sql-connector
+python-dotenv
