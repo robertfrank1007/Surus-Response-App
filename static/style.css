@@ -1,0 +1,269 @@
+:root {
+  --dark-red: #7a1f2b;
+  --mid-red: #b0303f;
+  --bright-red: #e0455a;
+  --light-red: #f7d9dc;
+  --pale-red: #ffeef0;
+  --bg: #fff5f5;
+  --text: #2b1010;
+  --body-text: #3a3a3a;
+  --light-gray: #d6d6d6;
+  --muted-gray: #8a8a8a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: white;
+  color: var(--text);
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.banner {
+  background: var(--dark-red);
+  border-bottom: 4px solid var(--mid-red);
+  color: white;
+  padding: 1.75rem 1rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+}
+
+.banner-logo {
+  height: 40px;
+  width: auto;
+}
+
+.banner h1 {
+  margin: 0;
+  color: white;
+  letter-spacing: 0.02em;
+  font-size: 1.6rem;
+}
+
+.banner p {
+  margin: 0.4rem 0 0;
+  color: var(--light-red);
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1rem;
+}
+
+.card {
+  background: var(--light-red);
+  border: 1px solid var(--dark-red);
+  border-radius: 14px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(122, 31, 43, 0.12);
+  text-align: center;
+  width: 100%;
+  max-width: 560px;
+}
+
+.card.wide {
+  max-width: 760px;
+}
+
+.kpi-row {
+  display: flex;
+  gap: 0.85rem;
+  margin: 0.85rem 0;
+  flex-wrap: wrap;
+}
+
+.kpi-tile {
+  flex: 1;
+  min-width: 100px;
+  background: white;
+  border: 1px solid var(--light-gray);
+  border-radius: 10px;
+  padding: 1rem 0.5rem;
+}
+
+.kpi-value {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--dark-red);
+  line-height: 1.1;
+}
+
+.kpi-label {
+  font-size: 0.75rem;
+  color: var(--muted-gray);
+  margin-top: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+h2 {
+  color: var(--dark-red);
+  font-size: 1.05rem;
+  text-align: left;
+  margin: 1.75rem 0 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.bar-chart {
+  text-align: left;
+  margin: 0.75rem 0 1.75rem;
+}
+
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.bar-row-label {
+  width: 130px;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+  color: var(--body-text);
+}
+
+.bar-track {
+  flex: 1;
+  background: white;
+  border: 1px solid var(--light-gray);
+  border-radius: 6px;
+  height: 24px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: var(--dark-red);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  white-space: nowrap;
+  min-width: 28px;
+  transition: width 0.4s ease;
+}
+
+.instructions {
+  color: var(--body-text);
+  line-height: 1.5;
+  text-align: center;
+  margin-top: -0.5rem;
+}
+
+.info-box {
+  background: white;
+  border: 1px solid var(--light-gray);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 0.5rem 0 1.75rem;
+  text-align: left;
+  color: var(--body-text);
+  line-height: 1.6;
+}
+
+code {
+  background: var(--pale-red);
+  color: var(--dark-red);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+h1 {
+  color: var(--dark-red);
+  margin-top: 0;
+}
+
+.error {
+  color: var(--mid-red);
+  font-weight: bold;
+}
+
+input[type="file"] {
+  display: block;
+  margin: 1.5rem auto;
+  color: var(--dark-red);
+}
+
+button {
+  background: var(--dark-red);
+  color: white;
+  border: none;
+  padding: 0.65rem 1.75rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+button:hover {
+  background: var(--mid-red);
+}
+
+a {
+  color: var(--mid-red);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.spinner {
+  margin: 1.5rem auto;
+  width: 36px;
+  height: 36px;
+  border: 4px solid var(--light-red);
+  border-top-color: var(--dark-red);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 auto 1.75rem;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid var(--light-gray);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--dark-red);
+  color: white;
+  border-color: var(--dark-red);
+  text-align: left;
+}
+
+td {
+  background: white;
+  color: var(--body-text);
+}
+
+

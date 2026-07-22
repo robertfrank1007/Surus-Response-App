@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+  <title>Response Model</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="banner">
+    <img class="banner-logo" src="{{ url_for('static', filename='surusenterprise.png') }}" alt="Surus Enterprises logo">
+    <h1>Response Prediction Tool</h1>
+  </div>
+
+  <div class="content">
+    <div class="card" id="form-card">
+      <h1>Upload List of External IDs</h1>
+
+      {% if error %}
+        <p class="error">{{ error }}</p>
+      {% endif %}
+
+      <form id="upload-form" action="/run" method="post" enctype="multipart/form-data">
+        <input type="file" name="csv_file" accept=".csv">
+        <button type="submit">Run</button>
+      </form>
+
+      <p><a href="{{ url_for('logout') }}">Log out</a></p>
+    </div>
+
+    <div class="card" id="loading-card" style="display: none;">
+      <h1>Generating Predictions...</h1>
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("upload-form").addEventListener("submit", async function (event) {
+      event.preventDefault();
+      document.getElementById("form-card").style.display = "none";
+      document.getElementById("loading-card").style.display = "block";
+
+      const response = await fetch("/run", {
+        method: "POST",
+        body: new FormData(event.target),
+      });
+      const html = await response.text();
+
+      document.open();
+      document.write(html);
+      document.close();
+    });
+  </script>
+</body>
+</html>

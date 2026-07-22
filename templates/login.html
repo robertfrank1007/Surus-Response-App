@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+  <title>Response Model - Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="banner">
+    <img class="banner-logo" src="{{ url_for('static', filename='surusenterprise.png') }}" alt="Surus Enterprises logo">
+    <h1>Response Prediction Tool</h1>
+  </div>
+
+  <div class="content">
+    <div class="card">
+      <h1>Sign In</h1>
+
+      {% if error %}
+        <p class="error">{{ error }}</p>
+      {% endif %}
+
+      <p class="instructions">Use your @surusenterprise Google account to continue.</p>
+
+      <a href="{{ url_for('login') }}"><button type="button">Continue</button></a>
+    </div>
+  </div>
+</body>
+</html>

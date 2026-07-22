@@ -1,6 +1,7 @@
 flask
 pandas
-lightgbm
-mlflow[databricks]
+requests
 databricks-sql-connector
 python-dotenv
+authlib
+gunicorn

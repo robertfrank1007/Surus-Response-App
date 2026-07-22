@@ -1,17 +1,17 @@
 from databricks import sql
 
-from . import config
+from . import auth, config
 
 
 def get_connection():
-    """Opens a Databricks SQL connection using OAuth user login.
+    """Opens a Databricks SQL connection using a bearer token from auth.py.
 
-    On first use this opens a browser window for you to log in
-    (same login as the Databricks workspace). The resulting token
-    is cached locally so later runs won't prompt again until it expires.
+    Token comes from exchanging DATABRICKS_REFRESH_TOKEN -- no browser,
+    no CLI, no local cache file needed, so this works the same on a
+    deployed server as it does locally.
     """
     return sql.connect(
         server_hostname=config.DATABRICKS_HOST,
         http_path=config.DATABRICKS_HTTP_PATH,
-        auth_type="databricks-oauth",
+        access_token=auth.get_access_token(),
     )

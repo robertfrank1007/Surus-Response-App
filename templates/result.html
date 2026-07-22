@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+  <title>Response Model - Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="banner">
+    <img class="banner-logo" src="{{ url_for('static', filename='surusenterprise.png') }}" alt="Surus Enterprises logo">
+    <h1>Response Prediction Tool</h1>
+  </div>
+
+  <div class="content">
+  <div class="card wide">
+    <h1>Results</h1>
+
+    <div class="kpi-row">
+      <div class="kpi-tile">
+        <div class="kpi-value">{{ result.num_scored }}</div>
+        <div class="kpi-label">Scored</div>
+      </div>
+      <div class="kpi-tile">
+        <div class="kpi-value">{{ result.num_likely }}</div>
+        <div class="kpi-label">Likely to Respond</div>
+      </div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi-tile">
+        <div class="kpi-value">{{ result.num_requested }}</div>
+        <div class="kpi-label">Uploaded</div>
+      </div>
+      <div class="kpi-tile">
+        <div class="kpi-value">{{ result.num_not_found }}</div>
+        <div class="kpi-label">Not Found</div>
+      </div>
+      <div class="kpi-tile">
+        <div class="kpi-value">{{ result.runtime_seconds }}s</div>
+        <div class="kpi-label">Runtime</div>
+      </div>
+    </div>
+
+    <h2>Prediction Breakdown</h2>
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-row-label">Likely (1)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width: {{ (result.num_likely / result.num_scored * 100) | round(1) }}%">{{ result.num_likely }}</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-row-label">Not Likely (0)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width: {{ (result.num_unlikely / result.num_scored * 100) | round(1) }}%">{{ result.num_unlikely }}</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Preview (Top 10 Rows)</h2>
+    <table>
+      <tr>
+        {% for key in result.preview[0].keys() %}
+          <th>{{ key }}</th>
+        {% endfor %}
+      </tr>
+      {% for row in result.preview %}
+        <tr>
+          {% for value in row.values() %}
+            <td>{{ value }}</td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </table>
+
+    <h2>Data Locations</h2>
+    <div class="info-box">
+      Staging Table: <code>{{ result.staging_table }}</code><br>
+      Predictions Table: <code>{{ result.predictions_table }}</code>
+    </div>
+
+    <p>
+      <a href="{{ result.csv_data_uri }}" download="predictions.csv"><button type="button">Download Full Results</button></a>
+    </p>
+
+    <p><a href="/">Run another</a></p>
+  </div>
+  </div>
+</body>
+</html>
