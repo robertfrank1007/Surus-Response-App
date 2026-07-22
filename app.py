@@ -4,12 +4,14 @@ from functools import wraps
 
 from authlib.integrations.flask_client import OAuth
 from flask import Flask, redirect, render_template, request, session, url_for
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 from backend import config
 from backend.pipeline import run_pipeline
 
 app = Flask(__name__)
 app.secret_key = config.FLASK_SECRET_KEY
+app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 
 oauth = OAuth(app)
 oauth.register(
